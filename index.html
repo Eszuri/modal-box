@@ -1,144 +1,150 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>membuat pop up konfirmasi</title>
-        <style>
-            body,
-            h1 {
-                margin: 0;
-            }
 
-            section {
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 0%;
-                height: 0%;
-                background-color: rgba(0, 0, 0, 0.6);
-                overflow: hidden;
-                transition: 500ms;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>membuat pop up konfirmasi</title>
+    <style>
+        body,
+        h1 {
+            margin: 0;
+        }
 
-            div {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 320px;
-                height: 200px;
-                padding: 10px;
-                transform: translate(-50%, -50%);
-                background-color: white;
-                /* ganti warna sesuai selera */
-                border-radius: 5px;
-                color: black;
-                text-align: center;
-            }
+        section {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 0%;
+            background-color: rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transition: 500ms;
+            z-index: 0;
+        }
 
-            h1 {
-                font-size: 24px;
-                font-weight: 800;
-                text-transform: uppercase;
-            }
+        div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 320px;
+            height: 200px;
+            padding: 10px;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            /* ganti warna sesuai selera */
+            border-radius: 5px;
+            color: black;
+            text-align: center;
+            z-index: -1;
+        }
 
-            span {
-                display: inline-block;
-                background-color: red;
-                width: 150px;
-                /*    width setengah dari width div*/
-                height: 40px;
-                color: white;
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
 
-                /* biar text ditengah */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: 500ms;
-                border-radius: 5px;
-            }
+        span {
+            display: inline-block;
+            background-color: red;
+            width: 150px;
+            /*    width setengah dari width div*/
+            height: 40px;
+            color: white;
 
-            span:active {
-                background-color: darkred;
-            }
+            /* biar text ditengah */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 500ms;
+            border-radius: 5px;
+        }
 
-            #oke {
-                position: absolute;
-                left: 5px;
-                bottom: 5px;
-            }
+        span:active {
+            background-color: darkred;
+        }
 
-            #cancel {
-                position: absolute;
-                right: 5px;
-                bottom: 5px;
-            }
+        #oke {
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+        }
 
-            input {
-                width: 50%;
-                height: 50px;
-                font-size: 40px;
-                margin: 5px;
-            }
+        #cancel {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
 
-            button {
-                width: 50%;
-                height: 50px;
-                font-size: 40px;
-                margin: 5px;
-                background-color: lightblue;
-            }
-            button:hover {
-                background-color: blue;
-            }
-        </style>
-    </head>
-    <body>
-        <section>
-            <div>
-                <h1>Apakah Antum Yakin?</h1>
-                <p>
-                    apakah anda yakin ingin menghapus text yang ada pada value
-                    input? tekan "oke" untuk konfirmasi, tekan "batal" untuk
-                    membatalkan
-                </p>
-                <span id="oke">Oke</span>
-                <span id="cancel">Batal</span>
-            </div>
-        </section>
+        input {
+            width: 50%;
+            height: 50px;
+            font-size: 40px;
+            margin: 5px;
+        }
 
-        <!-- ini hanya contoh
+        button {
+            width: 50%;
+            height: 50px;
+            font-size: 30px;
+            margin: 5px;
+            background-color: lightblue;
+        }
+
+        button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div>
+            <h1>Apakah Antum Yakin?</h1>
+            <p>
+                apakah anda yakin ingin menghapus text yang ada pada value
+                input? tekan "oke" untuk konfirmasi, tekan "batal" untuk
+                membatalkan
+            </p>
+            <span id="oke">Oke</span>
+            <span id="cancel">Batal</span>
+        </div>
+    </section>
+
+    <!-- ini hanya contoh
       ga usah di ikutin ya gapapa -->
-        <input type="text" value="999999" />
-        <button>Hapus text</button>
+    <input type="text" value="999999" />
+    <button>Hapus text</button>
 
-        <script>
-            // baris untuk variabel
-            const btn = document.querySelector("button");
-            const sect = document.querySelector("section");
-            const oke = document.getElementById("oke");
-            const cancel = document.getElementById("cancel");
+    <script>
+        // baris untuk variabel
+        const btn = document.querySelector("button");
+        const sect = document.querySelector("section");
+        const oke = document.getElementById("oke");
+        const cancel = document.getElementById("cancel");
 
-            // baris buat eksekusi
-            // menampilkan pop up
-            btn.addEventListener("click", () => {
-                sect.style.width = "100%";
-                sect.style.height = "100%";
-            });
+        // baris buat eksekusi
+        // menampilkan pop up
+        btn.addEventListener("click", () => {
+            sect.style.width = "100%";
+            sect.style.height = "100%";
+        });
 
-            // aksi saat oke
-            oke.addEventListener("click", () => {
-                document.querySelector("input").value = "";
-                sect.style.width = "0%";
-                sect.style.height = "0%";
-            });
+        // aksi saat oke
+        oke.addEventListener("click", () => {
+            document.querySelector("input").value = "";
+            sect.style.width = "0%";
+            sect.style.height = "0%";
+        });
 
-            // aksi saat cancel
-            cancel.addEventListener("click", () => {
-                sect.style.width = "0%";
-                sect.style.height = "0%";
-            });
-        </script>
-    </body>
+        // aksi saat cancel
+        cancel.addEventListener("click", () => {
+            sect.style.width = "0%";
+            sect.style.height = "0%";
+        });
+    </script>
+</body>
+
 </html>
